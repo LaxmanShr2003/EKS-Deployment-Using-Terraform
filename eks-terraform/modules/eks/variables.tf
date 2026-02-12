@@ -11,7 +11,7 @@ variable "public_subnet_ids" {
 variable "node_instance_types" {
   type        = list(string)
   description = "List of EC2 instance types for the EKS managed node group."
-  default     = ["t3.medium"]
+  default     = ["t3.micro"]
 }
 
 variable "node_desired_size" {
