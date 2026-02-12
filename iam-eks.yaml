@@ -37,13 +37,11 @@ Resources:
               - iam:AttachRolePolicy
               - iam:DetachRolePolicy
               - iam:GetRole
+              - iam:ListAttachedRolePolicies
               - iam:ListRoles
               - iam:PassRole
               - iam:CreateServiceLinkedRole
-            Resource:
-              - !GetAtt EKSClusterRole.Arn
-              - !GetAtt EKSNodeRole.Arn
-              - !GetAtt EKSAdminRole.Arn
+            Resource: "*"
 
           # EKS permission
           - Effect: Allow
