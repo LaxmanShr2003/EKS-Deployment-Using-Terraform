@@ -19,6 +19,9 @@ data "aws_iam_role" "eks_node_role" {
 resource "aws_eks_cluster" "eks" {
   name     = var.eks_cluster_name
   role_arn = data.aws_iam_role.eks_cluster_role.arn
+  upgrade_policy {
+  support_type = "STANDARD"
+}
 
   vpc_config {
     subnet_ids = var.public_subnet_ids

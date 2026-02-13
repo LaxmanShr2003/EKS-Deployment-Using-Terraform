@@ -78,5 +78,5 @@ jobs:
           aws eks update-kubeconfig \
             --region ${{ inputs.aws_region }} \
             --name ${{ inputs.eks_cluster_name }} \
-            --profile ${{ inputs.terraform_user_name }} \
+            --profile ${{ inputs.terraform_user_name }} 
           kubectl get nodes
