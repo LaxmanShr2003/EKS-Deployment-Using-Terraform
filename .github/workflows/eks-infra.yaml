@@ -77,6 +77,8 @@ jobs:
             -var='public_azs=["'"$(echo ${{ inputs.public_azs }} | sed 's/,/","/g')"'" ]' \
             -var='public_subnets_cidrs=["'"$(echo ${{ inputs.public_subnets_cidrs }} | sed 's/,/","/g')"'" ]' \
             -var="eks_cluster_name=${{ inputs.eks_cluster_name }}"
+            -var="access_key=${{ inputs.Terraform_user_access_key }}"
+            -var="secret_key=${{ inputs.Terraform_user_secret_key }}"
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig \
