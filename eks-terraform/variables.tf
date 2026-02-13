@@ -39,7 +39,7 @@ variable "eks_cluster_name" {
 variable "node_instance_types" {
   description = "Instance types for EKS worker nodes"
   type        = list(string)
-  default     = ["t3.medium"]
+  default     = ["t3.micro"]
 }
 
 variable "node_desired_size" {
