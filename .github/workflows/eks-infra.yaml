@@ -38,9 +38,13 @@ on:
         required: true
         default: "learning-eks"
 
-permissions:
-  id-token: write
-  contents: read
+      Terraform_user_access_key:
+        description: "Terraform user AWS Access Key"
+        required: true
+        
+      Terraform_user_secret_key:
+        description: "Terraform user AWS Secret Key"
+        required: true
 
 jobs:
   terraform:
@@ -52,7 +56,8 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-terraform-role
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ inputs.aws_region }}
 
       - name: Setup Terraform
@@ -77,4 +82,5 @@ jobs:
           aws eks update-kubeconfig \
             --region ${{ inputs.aws_region }} \
             --name ${{ inputs.eks_cluster_name }} \
+            --profile ${{ inputs.terraform_user_name }} \
           kubectl get nodes

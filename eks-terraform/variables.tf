@@ -65,3 +65,12 @@ variable "node_capacity_type" {
   type        = string
   default     = "ON_DEMAND"
 }
+
+variable access_key {
+  description = "Terraform-user AWS Access Key"
+  type = string
+}
+variable secret_key {
+  description = "Terraform-user AWS Secret Key"
+  type = string
+}
