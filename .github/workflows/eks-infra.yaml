@@ -38,13 +38,7 @@ on:
         required: true
         default: "learning-eks"
 
-      Terraform_user_access_key:
-        description: "Terraform user AWS Access Key"
-        required: true
-        
-      Terraform_user_secret_key:
-        description: "Terraform user AWS Secret Key"
-        required: true
+    
 
 jobs:
   terraform:
@@ -77,8 +71,8 @@ jobs:
             -var='public_azs=["'"$(echo ${{ inputs.public_azs }} | sed 's/,/","/g')"'" ]' \
             -var='public_subnets_cidrs=["'"$(echo ${{ inputs.public_subnets_cidrs }} | sed 's/,/","/g')"'" ]' \
             -var="eks_cluster_name=${{ inputs.eks_cluster_name }}"
-            -var="access_key=${{ inputs.Terraform_user_access_key }}"
-            -var="secret_key=${{ inputs.Terraform_user_secret_key }}"
+            -var="access_key=${{ secrets.TERRAFORM_USER_ACCESS_KEY }}"
+            -var="secret_key=${{ secrets.TERRAFORM_USER_SECRET_KEY }}"
       - name: Update kubeconfig
         run: |
           aws eks update-kubeconfig \
